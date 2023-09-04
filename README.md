@@ -1,1 +1,7 @@
-# MYKART is the ecommerce website, developed using MERN stack along with the tailwindCSS
+# MYKART is the ecommerce website
+
+## Technology used
+
+1.  Frontend - ReactJS
+2.  Backend - NodeJs & Express
+3.  CSS - TailwindCSS
