@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaCartShopping, FaMagnifyingGlass } from 'react-icons/fa6';
+import { FaCartShopping } from 'react-icons/fa6';
 import { Store } from '../Store';
 import { Dropdown, Navbar } from 'flowbite-react';
+import SearchBox from './SearchBox';
 
 const Navigation = () => {
   const { state, dispatch } = useContext(Store);
@@ -42,9 +43,15 @@ const Navigation = () => {
                 {user?.email}
               </div>
             </Dropdown.Header>
-            <div className="text-sm text-gray-500 p-2 mx-4">Profile</div>
-            <div className="text-sm text-gray-500 p-2 mx-4">Orders</div>
-            <div className="text-sm text-gray-500 p-2 mx-4">Wishlist</div>
+            <div className="text-sm text-gray-500 p-2 mx-4">
+              <Link to="/profile">Profile</Link>
+            </div>
+            <div className="text-sm text-gray-500 p-2 mx-4">
+              <Link to="/orders">Orders</Link>
+            </div>
+            <div className="text-sm text-gray-500 p-2 mx-4">
+              <Link to="/wishlist">Wishlist</Link>
+            </div>
             <Dropdown.Divider />
             <div className="text-sm text-gray-500 p-2 mx-4">
               <button onClick={signOutHandler}>Sign out</button>
@@ -82,14 +89,7 @@ const Navigation = () => {
         </div>
       )}
       <Navbar.Collapse>
-        <div className="w-[450px] bg-gray-200 rounded-md flex">
-          <FaMagnifyingGlass className="self-center m-3 text-lg bg-gray-200 text-gray-400" />
-          <input
-            type="text"
-            placeholder="search here"
-            className="w-full p-1 h-12 bg-gray-200 rounded-md text-md focus:outline-none"
-          />
-        </div>
+        <SearchBox />
         <Link to="/cart">
           <div className="relative top-3 -right-20">
             {cart?.cartItems?.length > 0 && (

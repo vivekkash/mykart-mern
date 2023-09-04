@@ -77,3 +77,39 @@ export const register = expressAsyncHandler(async (req, res) => {
     },
   });
 });
+
+export const updateUser = expressAsyncHandler(async (req, res) => {
+  const { name, password } = req.body;
+
+  const existUser = await User.findById(req.params.id);
+
+  if (!existUser) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  /*encrypt the password*/
+
+  //step1 generate salt
+  const salt = await bcrypt.genSalt(10);
+
+  //step2 hash the password
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  existUser.name = name;
+  existUser.password = hashedPassword;
+
+  await existUser.save();
+
+  // updated successful, generate token for user to login.
+
+  return res.json({
+    message: 'success',
+    data: {
+      id: existUser._id,
+      name: existUser.name,
+      email: existUser.email,
+      isAdmin: existUser.isAdmin,
+      token: generateToken(existUser),
+    },
+  });
+});

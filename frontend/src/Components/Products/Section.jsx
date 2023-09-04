@@ -5,6 +5,7 @@ import Loading from '../Utils/Loading';
 import Error from '../Utils/Error';
 import { Carousel } from 'flowbite-react';
 import { Store } from '../../Store';
+import { Accordion } from 'flowbite-react';
 
 const Section = () => {
   const navigate = useNavigate();
@@ -63,27 +64,49 @@ const Section = () => {
                 Add to cart
               </button>
               <button className="h-14 flex-1 text-white bg-yellow-300 font-semibold hover:bg-yellow-400">
-                Buy Now
+                Wishlist
               </button>
             </div>
           </div>
-          <div className="flex-1">
-            <h1 className="text-xl text-center">{product.title}</h1>
-            <span className="text-[10px] bg-green-500 text-white p-1 mt-1 rounded-md ">
+          <div className="flex-1 bg-white p-4">
+            <h2 className="text-md text-gray-400 mb-2">{product.brand}</h2>
+            <h1 className="text-xl mb-2">{product.title}</h1>
+            <span className="text-[12px] font-semibold bg-green-500 text-white p-1 mt-1 rounded-md">
               {product.rating} ☆
             </span>
-            <h4 className="text-lg font-semibold dark:text-white mt-2">
+
+            <p className="text-[14px] text-green-600 mt-2">special price</p>
+            <h4 className="text-2xl font-semibold dark:text-white mb-2">
               ₹{product.price}
-            </h4>
-            <h5 className="">
-              <span className="line-through text-gray-400 text-[14px] px-2 font-light">
+              <span className="line-through text-gray-400 text-[16px] px-2 font-light">
                 ₹{product.price + (product.price * 12) / 100}
               </span>
               <span className="text-green-500 text-sm font-normal">
                 {product.discountPercentage}% off
               </span>
-            </h5>
-            <p>{product.description}</p>
+            </h4>
+            <div className="mt-4">
+              <Accordion>
+                <Accordion.Panel>
+                  <Accordion.Title className="bg-white hover:bg-white">
+                    Product Details
+                  </Accordion.Title>
+                  <Accordion.Content>
+                    <div className="flex flex-wrap mb-2 p-2 ">
+                      <div className="flex-1">
+                        <h4 className="text-sm mb-2">Brand</h4>
+                        <p className="text-sm font-thin">{product.brand}</p>
+                      </div>
+                      <div className="flex-1"></div>
+                    </div>
+                    <div className="p-2">
+                      <h4 className="text-sm mb-2">Description</h4>
+                      <p className="text-sm font-thin">{product.description}</p>
+                    </div>
+                  </Accordion.Content>
+                </Accordion.Panel>
+              </Accordion>
+            </div>
           </div>
         </div>
       )}

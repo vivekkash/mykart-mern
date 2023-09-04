@@ -2,7 +2,7 @@ import Order from '../models/Order.js';
 import expressAsyncHandler from 'express-async-handler';
 
 export const getUserOrders = expressAsyncHandler(async (req, res) => {
-  const orders = await Order.find({ user: req.user._id }).populate('address');
+  const orders = await Order.find({ user: req.user.id });
   return res.json({ message: 'success', data: orders });
 });
 

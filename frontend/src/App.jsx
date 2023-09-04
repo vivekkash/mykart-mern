@@ -7,6 +7,9 @@ import Login from './Components/User/Login';
 import SignUp from './Components/User/Signup';
 import Checkout from './Components/Checkout/Section';
 import Order from './Components/Order/Section';
+import Profile from './Components/User/Profile';
+import Orders from './Components/User/Orders';
+import Search from './Components/Products/Search';
 
 function App() {
   return (
@@ -20,8 +23,11 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/orders" element={<Orders />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/order/:id" element={<Order />} />
+            <Route path="/search" element={<Search />} />
           </Routes>
         </div>
       </div>

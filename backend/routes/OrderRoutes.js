@@ -11,7 +11,7 @@ const OrderRouter = express.Router();
 
 OrderRouter.get('/', verify, getAllOrders);
 OrderRouter.get('/:id', verify, getOrder);
-OrderRouter.get('/user', verify, getUserOrders);
+OrderRouter.get('/all/user', verify, getUserOrders);
 OrderRouter.post('/', verify, createOrder);
 
 export default OrderRouter;
