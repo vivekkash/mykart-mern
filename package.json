@@ -1,0 +1,21 @@
+{
+  "name": "mykart",
+  "version": "1.0.0",
+  "description": "mykart is B2C ecommerce web portal for the customers",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start":"node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivekkash/mykart-mern.git"
+  },
+  "author": "viveksagar kashyap",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vivekkash/mykart-mern/issues"
+  },
+  "homepage": "https://github.com/vivekkash/mykart-mern#readme"
+}
