@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ product }) => {
   return (
-    <Link to={`product/${product.slug}`}>
-      <div className="w-36 md:w-56 mb-1 bg-white">
+    <Link to={`/product/${product.slug}`}>
+      <div className="w-36 md:w-56 mb-1 bg-white hover:shadow-lg hover:scale-105 px-1">
         <img
           alt={product.title}
           src={product.thumbnail}
@@ -21,7 +21,11 @@ const Card = ({ product }) => {
           </h4>
           <h5 className="">
             <span className="line-through text-gray-400 text-[14px] px-2 font-light">
-              ₹{Math.round(product.price + (product.price * 12) / 100)}
+              ₹
+              {Math.round(
+                product.price +
+                  (product.price * product.discountPercentage) / 100
+              )}
             </span>
             <span className="text-green-500 text-sm font-normal">
               {product.discountPercentage}% off

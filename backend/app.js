@@ -31,8 +31,8 @@ app.use('*', (req, res, next) =>
 );
 
 //global error handler, catch exceptions throw by expressAsyncHandler
-app.use((err, req, res, next) => {
-  return res.status(500).json({ error: err.message });
-});
+//app.use((err, req, res, next) => {
+// return res.status(500).json({ error: err.message });
+//});
 
 export { app };

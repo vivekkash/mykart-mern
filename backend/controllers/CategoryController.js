@@ -6,6 +6,21 @@ export const getAllCategory = expressAsyncHandler(async (req, res) => {
   return res.json({ message: 'success', data: allCategory });
 });
 
+export const featuredCategory = expressAsyncHandler(async (req, res) => {
+  const allCategory = await Category.find({
+    slug: {
+      $in: [
+        'smartphones',
+        'laptops',
+        'furniture',
+        'home-decoration',
+        'groceries',
+      ],
+    },
+  });
+  return res.json({ message: 'success', data: allCategory });
+});
+
 export const productsByCategory = expressAsyncHandler(async (req, res) => {
   const Category = await Category.findOne({ slug: req.params.slug }).populate(
     'products'

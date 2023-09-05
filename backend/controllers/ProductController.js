@@ -29,9 +29,8 @@ export const getProduct = expressAsyncHandler(async (req, res) => {
 });
 
 export const getFilteredProduct = expressAsyncHandler(async (req, res) => {
-  console.log('query ', req.query);
   const { query } = req;
-  const pageSize = query.pageSize || 6;
+  const pageSize = query.pageSize || 8;
   const page = query.page || 1;
   const category = query.category || '';
   const rating = query.rating || '';
@@ -43,7 +42,7 @@ export const getFilteredProduct = expressAsyncHandler(async (req, res) => {
 
   const searchFilter =
     searchQuery && searchQuery !== 'all'
-      ? { name: { $regex: searchQuery, $option: i } }
+      ? { title: { $regex: searchQuery, $options: 'i' } }
       : {};
 
   const categoryFilter = category && category !== 'all' ? { category } : {};
@@ -52,6 +51,13 @@ export const getFilteredProduct = expressAsyncHandler(async (req, res) => {
   const priceFilter = price_range
     ? { price: { $gte: price_range[0], $lte: price_range[1] } }
     : {};
+
+  console.log({
+    ...searchFilter,
+    ...categoryFilter,
+    ...ratingFilter,
+    ...priceFilter,
+  });
 
   const sortFilter =
     sort === 'featured'
@@ -66,13 +72,6 @@ export const getFilteredProduct = expressAsyncHandler(async (req, res) => {
       ? { createdAt: -1 }
       : { _id: -1 };
 
-  console.log(
-    ...searchFilter,
-    ...categoryFilter,
-    ...ratingFilter,
-    ...priceFilter
-  );
-
   const products = await Product.find({
     ...searchFilter,
     ...categoryFilter,
@@ -83,7 +82,12 @@ export const getFilteredProduct = expressAsyncHandler(async (req, res) => {
     .skip(pageSize * (page - 1))
     .limit(pageSize);
 
-  const countProducts = products?.length || 0;
+  const countProducts = await Product.countDocuments({
+    ...searchFilter,
+    ...categoryFilter,
+    ...ratingFilter,
+    ...priceFilter,
+  });
 
   return res.json({
     message: 'success',

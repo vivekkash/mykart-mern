@@ -13,7 +13,7 @@ const Section = () => {
   const { slug } = params;
 
   const { result, error, loading } = useFetch(
-    `http://localhost:3000/api/v1/product/${slug}`
+    `http://localhost:3000/api/v1/product/detail/${slug}`
   );
 
   const { state, dispatch } = useContext(Store);
@@ -79,7 +79,11 @@ const Section = () => {
             <h4 className="text-2xl font-semibold dark:text-white mb-2">
               ₹{product.price}
               <span className="line-through text-gray-400 text-[16px] px-2 font-light">
-                ₹{product.price + (product.price * 12) / 100}
+                ₹
+                {Math.round(
+                  product.price +
+                    (product.price * product.discountPercentage) / 100
+                )}
               </span>
               <span className="text-green-500 text-sm font-normal">
                 {product.discountPercentage}% off
