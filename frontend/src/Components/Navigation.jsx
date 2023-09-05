@@ -23,8 +23,8 @@ const Navigation = () => {
           className="mr-3 h-6 sm:h-9"
           src="/favicon.svg"
         /> */}
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          MyCart.
+        <span className="self-center whitespace-nowrap text-lg md:text-xl font-semibold dark:text-white">
+          MyKart
         </span>
       </Link>
       {user ? (
@@ -43,15 +43,38 @@ const Navigation = () => {
                 {user?.email}
               </div>
             </Dropdown.Header>
-            <div className="text-sm text-gray-500 p-2 mx-4">
-              <Link to="/profile">Profile</Link>
-            </div>
-            <div className="text-sm text-gray-500 p-2 mx-4">
-              <Link to="/orders">Orders</Link>
-            </div>
-            <div className="text-sm text-gray-500 p-2 mx-4">
-              <Link to="/wishlist">Wishlist</Link>
-            </div>
+            <Link to="/profile">
+              <div className="text-sm text-gray-500 p-2 mx-4">Profile</div>
+            </Link>
+            <Link to="/orders">
+              <div className="text-sm text-gray-500 p-2 mx-4">Orders</div>
+            </Link>
+            <Link to="/wishlist">
+              <div className="text-sm text-gray-500 p-2 mx-4">Wishlist</div>
+            </Link>
+            {user.isAdmin ? (
+              <>
+                <Dropdown.Divider />{' '}
+                <div className="text-sm text-gray-500 p-2 mx-4">Admin</div>
+                <Dropdown.Divider />
+                <Link to="/admin/dashboard">
+                  <div className="text-sm text-gray-500 p-2 mx-4">
+                    Dashboard
+                  </div>
+                </Link>
+                <Link to="/admin/users">
+                  <div className="text-sm text-gray-500 p-2 mx-4">Users</div>
+                </Link>
+                <Link to="/admin/products">
+                  <div className="text-sm text-gray-500 p-2 mx-4">Products</div>
+                </Link>
+                <Link to="/admin/orders">
+                  <div className="text-sm text-gray-500 p-2 mx-4">Orders</div>
+                </Link>
+              </>
+            ) : (
+              ''
+            )}
             <Dropdown.Divider />
             <div className="text-sm text-gray-500 p-2 mx-4">
               <button onClick={signOutHandler}>Sign out</button>
@@ -79,11 +102,15 @@ const Navigation = () => {
               </div>
               <div className=""></div>
             </Dropdown.Header>
-            <div className="text-sm text-gray-500 p-2 mx-4">Profile</div>
-            <div className="text-sm text-gray-500 p-2 mx-4">Order</div>
-            <div className="text-sm text-gray-500 p-2 mx-4">Wishlist</div>
-            <Dropdown.Divider />
-            <div className="text-sm text-gray-500 p-2 mx-4">Sign out</div>
+            <Link to="/login?redirect=/profile">
+              <div className="text-sm text-gray-500 p-2 mx-4">Profile</div>
+            </Link>
+            <Link to="/login?redirect=/order">
+              <div className="text-sm text-gray-500 p-2 mx-4">Order</div>
+            </Link>
+            <Link to="/login?redirect=/wishlist">
+              <div className="text-sm text-gray-500 p-2 mx-4">Wishlist</div>
+            </Link>
           </Dropdown>
           <Navbar.Toggle />
         </div>

@@ -24,7 +24,7 @@ const Categories = () => {
           data.map((category, i) => {
             return (
               <Link key={i} to={`/search?category=${category.slug}`}>
-                <Card className="max-w-sm">
+                <Card className="max-w-sm hover:scale-105">
                   <Avatar
                     img={
                       category.image
