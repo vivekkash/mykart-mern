@@ -4,12 +4,12 @@ import User from '../models/User.js';
 import expressAsyncHandler from 'express-async-handler';
 
 export const getAllAddress = expressAsyncHandler(async (req, res) => {
-  const user = await User.findOne(req.user._id).populate('address');
+  const user = await User.findById(req.user.id).populate('address');
   return res.json({ message: 'success', data: user.address });
 });
 
 export const getDefaultAddress = expressAsyncHandler(async (req, res) => {
-  const user = await User.findOne(req.user._id).populate({
+  const user = await User.findById(req.user.id).populate({
     path: 'address',
     select: 'line1 line2 city pincode state',
     match: { isDefault: true },
@@ -17,7 +17,11 @@ export const getDefaultAddress = expressAsyncHandler(async (req, res) => {
 
   return res.json({
     message: 'success',
-    data: Array.isArray(user.address) ? user.address[0] : user.address,
+    data: user.address
+      ? Array.isArray(user.address)
+        ? user.address[0]
+        : user.address
+      : null,
   });
 });
 
