@@ -24,7 +24,8 @@ app.use('/api/v1/address', AddressRouter);
 app.use('/api/v1/order', OrderRouter);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'frontend/dist/assets')));
+console.log(__dirname);
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
 app.use('*', (req, res, next) =>
   res.sendFile(path.join(__dirname, 'frontend/dist/index.html'))
