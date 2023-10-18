@@ -24,15 +24,15 @@ app.use('/api/v1/address', AddressRouter);
 app.use('/api/v1/order', OrderRouter);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.static(path.join(__dirname, 'frontend/dist/assets')));
 
 app.use('*', (req, res, next) =>
-  res.sendFile(path.join(__dirname, 'frontend/build/index.html'))
+  res.sendFile(path.join(__dirname, 'frontend/dist/index.html'))
 );
 
 //global error handler, catch exceptions throw by expressAsyncHandler
-//app.use((err, req, res, next) => {
-// return res.status(500).json({ error: err.message });
-//});
+// app.use((err, req, res, next) => {
+//   return res.status(500).json({ error: err.message });
+// });
 
 export { app };
