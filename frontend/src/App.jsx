@@ -12,7 +12,7 @@ import Orders from './Components/User/Orders';
 import Search from './Components/Products/Search';
 import ProtectedRoute from './Components/Utils/ProtectedRoute';
 import AdminRoute from './Components/Utils/AdminRoute';
-import Dashboard from './Components/Admin/dashboard';
+import Dashboard from './Components/Admin/Dashboard';
 import Users from './Components/Admin/Users';
 import OrderList from './Components/Admin/Orders';
 import Products from './Components/Admin/Products';
