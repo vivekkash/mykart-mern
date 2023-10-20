@@ -33,16 +33,13 @@ const Login = () => {
         throw new Error("password and confirm password doesn't match");
       }
 
-      const response = await fetch(
-        'http://localhost:3000/api/v1/user/register',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(form),
-        }
-      );
+      const response = await fetch('/api/v1/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
 
       const result = await response.json();
 

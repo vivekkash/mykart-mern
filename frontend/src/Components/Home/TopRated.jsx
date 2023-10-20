@@ -4,9 +4,7 @@ import Loading from '../Utils/Loading';
 import Error from '../Utils/Error';
 
 const TopRated = () => {
-  const { result, error, loading } = useFetch(
-    'http://localhost:3000/api/v1/product/top?limit=6'
-  );
+  const { result, error, loading } = useFetch('/api/v1/product/top?limit=6');
 
   const data = result.data;
 

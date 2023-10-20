@@ -12,9 +12,7 @@ const Section = () => {
   const params = useParams();
   const { slug } = params;
 
-  const { result, error, loading } = useFetch(
-    `http://localhost:3000/api/v1/product/detail/${slug}`
-  );
+  const { result, error, loading } = useFetch(`/api/v1/product/detail/${slug}`);
 
   const { state, dispatch } = useContext(Store);
   const { cart } = state;

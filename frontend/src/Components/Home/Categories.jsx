@@ -5,9 +5,7 @@ import Error from '../Utils/Error';
 import { Link } from 'react-router-dom';
 
 const Categories = () => {
-  const { result, error, loading } = useFetch(
-    'http://localhost:3000/api/v1/category/featured'
-  );
+  const { result, error, loading } = useFetch('/api/v1/category/featured');
 
   const data = result.data || [];
 

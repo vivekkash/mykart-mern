@@ -75,7 +75,7 @@ const PaymentOptions = () => {
       //create order
       OrderDispatch({ type: 'ORDER_CREATED' });
 
-      const response = await fetch('http://localhost:3000/api/v1/order', {
+      const response = await fetch('/api/v1/order', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

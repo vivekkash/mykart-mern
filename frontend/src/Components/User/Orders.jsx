@@ -10,14 +10,11 @@ const Orders = () => {
     state: { user },
   } = useContext(Store);
 
-  const { result, error, loading } = useFetch(
-    'http://localhost:3000/api/v1/order/all/user',
-    {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    }
-  );
+  const { result, error, loading } = useFetch('/api/v1/order/all/user', {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  });
 
   const data = result?.data || [];
 

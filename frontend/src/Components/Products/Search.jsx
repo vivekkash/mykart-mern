@@ -49,7 +49,7 @@ const Search = () => {
         dispatch({ type: 'FETCH_INIT' });
 
         const response = await fetch(
-          `http://localhost:3000/api/v1/product/search?q=${query}&category=${category}&rating=${rating}&price=${price}&sort=${sort}&page=${page}`
+          `/api/v1/product/search?q=${query}&category=${category}&rating=${rating}&price=${price}&sort=${sort}&page=${page}`
         );
         const result = await response.json();
 
@@ -73,7 +73,7 @@ const Search = () => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/v1/category/');
+        const response = await fetch('/api/v1/category/');
         const result = await response.json();
         if (!response.ok) {
           throw new Error(

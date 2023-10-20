@@ -28,7 +28,7 @@ const Login = () => {
   const loginFormSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/v1/user/auth', {
+      const response = await fetch('/api/v1/user/auth', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,16 +70,13 @@ const Login = () => {
 
   const fetchUserAddress = async (token) => {
     try {
-      const response = await fetch(
-        'http://localhost:3000/api/v1/address/default',
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch('/api/v1/address/default', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       const result = await response.json();
 
