@@ -24,7 +24,7 @@ const DeliveryAddress = () => {
     setForm({ ...form, user: state.user.id });
 
     try {
-      const response = await fetch('http://localhost:3000/api/v1/address', {
+      const response = await fetch('/api/v1/address', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
